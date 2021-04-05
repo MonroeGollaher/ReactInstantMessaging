@@ -11,7 +11,9 @@ const MessageForm = (props) => {
 
     const text = value.trim()
 
-    if(text.length > 0) sendMessage(creds, chatId, { text })
+    if (text.length > 0) {
+      sendMessage(creds, chatId, { text })
+    }
 
     setValue('')
   }
@@ -22,27 +24,29 @@ const MessageForm = (props) => {
     isTyping(props, chatId)
   }
 
+
   const handleUpload = (event) => {
     sendMessage(creds, chatId, { files: event.target.files, text: '' })
-  }
+  };
 
   return (
     <form 
-      className="message-form"
+      className="message-form" 
       onSubmit={ handleSubmit }
     >
-      <input 
+      <input
         className="message-input"
         placeholder="Send a message"
         value={ value }
         onChange={ handleChange }
+        onSubmit={ handleSubmit }
       />
       <label htmlFor="upload-button">
         <span className="image-button">
           <PictureOutlined className="picture-icon"/>
         </span>
       </label>
-      <input 
+      <input
         type="file"
         multiple={ false }
         id="upload-button"
